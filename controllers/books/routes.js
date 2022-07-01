@@ -10,15 +10,15 @@ router.post('/books/create', async (req, res) => {
         authorId
       } = req.body;
   
-      const item = await itemController.createBook({
+      const item = await controller.createBook({
         title,
         summary,
         authorId
       });
-  
+      
       res.json({
         item,
-        status: 200,
+        status: 400,
         message: 'Book created successfully!'
       })
     } catch (err) {

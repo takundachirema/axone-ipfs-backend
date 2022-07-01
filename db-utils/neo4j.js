@@ -1,19 +1,17 @@
-"use strict";
-
-// neo4j cypher helper module
-const nconf = require('../config');
-
 const neo4j = require('neo4j-driver');
-const driver = neo4j.driver(nconf.get('neo4j-local'), neo4j.auth.basic(nconf.get('USERNAME'), nconf.get('PASSWORD')));
+const cls = require('continuation-local-storage');
 
-exports.getSession = function (context) {
-  if(context.neo4jSession) {
-    return context.neo4jSession;
+exports.getSession = function () {
+  const driver = neo4j.driver(process.env.NEO4J_URL, neo4j.auth.basic(process.env.NEO4J_USERNAME, process.env.NEO4J_PASSWORD));
+  
+  var session = cls.getNamespace(process.env.USER_SESSION);
+  var neo4jSession = session.get('NE04J_SESSION')
+
+  if(!neo4jSession) {
+    neo4jSession = driver.session();
+    session.set('NE04J_SESSION', neo4jSession)
   }
-  else {
-    context.neo4jSession = driver.session();
-    return context.neo4jSession;
-  }
+  return neo4jSession;
 };
 
 exports.dbWhere = function (name, keys) {
