@@ -1,7 +1,8 @@
-const neo4j = require('neo4j-driver');
-const cls = require('continuation-local-storage');
+import * as neo4j from 'neo4j-driver';
+import * as cls from 'continuation-local-storage';
 
-exports.getSession = function () {
+export function getNeo4jSession() {
+  console.log("get neo4j driver...\n")
   const driver = neo4j.driver(process.env.NEO4J_URL, neo4j.auth.basic(process.env.NEO4J_USERNAME, process.env.NEO4J_PASSWORD));
   
   var session = cls.getNamespace(process.env.USER_SESSION);
@@ -9,12 +10,18 @@ exports.getSession = function () {
 
   if(!neo4jSession) {
     neo4jSession = driver.session();
-    session.set('NE04J_SESSION', neo4jSession)
+    try{
+      session.set('NE04J_SESSION', neo4jSession)
+    }catch(err){
+      console.log('error set session: ',err.message)
+    }
   }
+  
+  console.log("got neo4j session\n")
   return neo4jSession;
 };
 
-exports.dbWhere = function (name, keys) {
+export function dbWhere(name, keys) {
   if (_.isArray(name)) {
     _.map(name, (obj) => {
       return _whereTemplate(obj.name, obj.key, obj.paramKey);

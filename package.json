@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "babel routes.js index.js -d dist && babel controllers -d dist/controllers && babel models -d dist/models && babel config -d dist/config",
     "start": "npm run build && node dist/index.js",
-    "test": "mocha --require @babel/register --reporter spec"
+    "test": "mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,6 @@
   "devDependencies": {
     "@babel/cli": "^7.18.6",
     "@babel/core": "^7.18.6",
-    "@babel/plugin-transform-runtime": "^7.18.6",
     "@babel/preset-env": "^7.18.6",
     "@babel/register": "^7.18.6"
   },

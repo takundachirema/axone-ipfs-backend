@@ -1,5 +1,5 @@
 import express from 'express';
-const cls = require('continuation-local-storage')
+import * as cls from 'continuation-local-storage';
 
 export function setSession(app) {
     app.use((req, res, next) => {
@@ -10,8 +10,12 @@ export function setSession(app) {
 
         var session = cls.createNamespace(process.env.USER_SESSION)
 
-        //session.set('sessionId', '123456');
+        nameSpace.run(() => {
 
-        next()
+            session.set('sessionId', '123456');
+            
+            next()
+        })
+       
     })
 }

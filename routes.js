@@ -1,5 +1,5 @@
-import bookRoutes from './controllers/books/routes'
-import chapterRoutes from './controllers/chapters/routes'
+import bookRoutes from './controllers/books/routes.js'
+import chapterRoutes from './controllers/chapters/routes.js'
 
 export function registerRoutes(app) {
     app.use('/api', bookRoutes);

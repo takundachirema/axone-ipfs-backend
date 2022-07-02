@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import * as controller from './books';
+import * as controller from './books.js';
 
 router.post('/books/create', async (req, res) => {
     try {

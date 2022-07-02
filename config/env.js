@@ -14,8 +14,8 @@ export function setEnvironment(app) {
 
 function setDevEnv(app) {
     process.env.NEO4J_URL = 'bolt://localhost:7687'; 
-    process.env.NEO4J_USERNAME = 'axone-admin'; 
-    process.env.NEO4J_PASSWORD = '1234';
+    process.env.NEO4J_USERNAME = 'neo4j'; 
+    process.env.NEO4J_PASSWORD = 'neo4j';
     process.env.IPFS_PATH = '~/.ipfs';
     process.env.USER_SESSION = 'USER_SESSION';
     process.env.PRIVATE_KEY = '2uMu1RfZYsEntPEHbByGfHvNMaAxeSb8BprL6taroPsLtv8FM5FgxTBEVQQJUzjMyGLGZxMTUqxGQVLiFwxML2kC'
@@ -27,8 +27,8 @@ function setDevEnv(app) {
 
 function setProdEnv(app) {
     process.env.NEO4J_URL = 'bolt://localhost:7687'; 
-    process.env.NEO4J_USERNAME = 'axone-admin'; 
-    process.env.NEO4J_PASSWORD = '1234';
+    process.env.NEO4J_USERNAME = 'neo4j'; 
+    process.env.NEO4J_PASSWORD = 'neo4j';
     process.env.IPFS_PATH = '~/.ipfs';
     process.env.USER_SESSION = 'USER_SESSION';
     process.env.PRIVATE_KEY = '2uMu1RfZYsEntPEHbByGfHvNMaAxeSb8BprL6taroPsLtv8FM5FgxTBEVQQJUzjMyGLGZxMTUqxGQVLiFwxML2kC'

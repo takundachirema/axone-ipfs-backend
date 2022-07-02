@@ -1,20 +1,14 @@
-const cls = require('continuation-local-storage');
+import * as cls from 'continuation-local-storage';
 //const IPFS = require('ipfs-core')
-//import * as IPFS from 'ipfs-core'
+import * as IPFS from 'ipfs-core'
 
-exports.getNode = async function () {
-    console.log("** get ipfs node 1 **")
-
-    const { create } = await import('ipfs-core')
-    
-    console.log("** get ipfs node 2 **")
-
+export async function getIpfsNode() {
+    console.log("get ipfs node...\n")
     var session = cls.getNamespace(process.env.USER_SESSION);
     var node = session.get('IPFS_NODE')
     
     if(!node) {
-        console.log("** awaiting node")
-        node = await create({
+        node = await IPFS.create({
             repo: process.env.IPFS_PATH,
             offline: true,
             config: {
@@ -28,7 +22,14 @@ exports.getNode = async function () {
             },
             ipld: undefined
         })
-        session.set('IPFS_NODE', node)
+
+        try{
+            session.set('IPFS_NODE', node)
+        }catch(err){
+            console.log('error setting session ipfs node: ', err.message)
+        }
     }
+
+    console.log("got ipfs node\n")
     return node;
-};
+}

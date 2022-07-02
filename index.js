@@ -1,15 +1,15 @@
 // Bring in the express package
 import express from 'express';
 import bodyParser from 'body-parser';
-import {setEnvironment} from './config/env';
+import {setEnvironment} from './config/env.js';
 import {registerRoutes} from './routes.js';
-import {setSession} from './middleware/auth';
+import {setSession} from './middleware/auth.js';
 
-const cors = require('cors');
+import cors from 'cors';
 const app = express() // instantiate a new express app
 const port = process.env.PORT || 3000
 
-app.use(cors());
+app.use(cors);
 
 setEnvironment(app);
 registerRoutes(app);
@@ -36,4 +36,4 @@ var server = app.listen(port, () => {
   console.log('App listening on port '+port)
 })
 
-module.exports = server
+export {server}

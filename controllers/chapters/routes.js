@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import * as controller from './chapters';
+import * as controller from './chapters.js';
 
 router.post('/chapters/latest', controller.getLatest);
 

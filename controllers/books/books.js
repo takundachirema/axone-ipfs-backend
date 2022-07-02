@@ -1,5 +1,4 @@
-// import { create } from 'ipfs-http-client'
-import Book from '../../models/book'
+import {Book} from '../../models/book.js'
 
 /**
  * Receives the book details and:
@@ -11,7 +10,6 @@ import Book from '../../models/book'
 export async function createBook(params) {
     var newBook = new Book(params.title, params.summary, params.authorId)
     var savedBook = await newBook.save()
-    console.log(savedBook)
     return savedBook
 }
 
