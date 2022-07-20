@@ -13,10 +13,10 @@ export async function createBook(params) {
     return savedBook
 }
 
+export function getBook(id) {}
+
 export function home() {}
 
 export function searchForBooks(query) {}
-
-export function getBook(id) {}
 
 export function getChapters(id) {}
